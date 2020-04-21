@@ -15,11 +15,6 @@ import org.apache.log4j.Logger;
 
 public class Airplane extends Thread {
     private final static Logger LOGGER = Logger.getLogger(Airplane.class);
-
-    static {
-        PropertyConfigurator.configure("./src/main/resources/log4j.properties");
-    }
-
     private List<Airplane> airplanesInTerminals;
     private List<Passenger> passengers;
     private int passengerCapacity;

@@ -10,11 +10,6 @@ import java.util.concurrent.Semaphore;
 
 public class Airport {
     private final static Logger LOGGER = Logger.getLogger(Airport.class);
-
-    static {
-        PropertyConfigurator.configure("./src/main/resources/log4j.properties");
-    }
-
     private final Exchanger<Ticket> TICKET_EXCHANGER = new Exchanger<>();
     private List<Airplane> airplanesInTerminals;
     private Semaphore terminals;
@@ -34,7 +29,5 @@ public class Airport {
             new Passenger(airplanesInTerminals, "Vany"+i, new Ticket(i, i+1), TICKET_EXCHANGER).start();
         }
     }
-
-
 
 }

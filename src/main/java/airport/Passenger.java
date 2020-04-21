@@ -12,11 +12,6 @@ import java.util.stream.Collectors;
 
 public class Passenger extends Thread {
     private final static Logger LOGGER = Logger.getLogger(Passenger.class);
-
-    static {
-        PropertyConfigurator.configure("./src/main/resources/log4j.properties");
-    }
-
     private List<Airplane> airplanesInTerminals;
     private String name;
     private Ticket ticket;
@@ -92,6 +87,21 @@ public class Passenger extends Thread {
     }
 
 
+    public List<Airplane> getAirplanesInTerminals() {
+        return airplanesInTerminals;
+    }
+
+    public void setAirplanesInTerminals(List<Airplane> airplanesInTerminals) {
+        this.airplanesInTerminals = airplanesInTerminals;
+    }
+
+    public Ticket getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
+    }
 
     public boolean isInFlight() {
         return inFlight;
@@ -102,7 +112,7 @@ public class Passenger extends Thread {
     }
 
     private void changeTicket() throws InterruptedException, TimeoutException {
-        ticketExchanger.exchange(ticket, 5, TimeUnit.SECONDS);
+        ticket=ticketExchanger.exchange(ticket, 5, TimeUnit.SECONDS);
         LOGGER.debug("PASSENGER #"+name+" has changed ticket");
     }
 }
